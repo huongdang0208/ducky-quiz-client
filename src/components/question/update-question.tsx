@@ -62,7 +62,7 @@ const UpdateQuestion = () => {
         correctAnswers: correctAnswers
           .toString()
           .split(",")
-          .map((answer) => answer.trim()),
+          ?.map((answer) => answer.trim()),
       };
       await updateQuestion(id || "", updatedQuestion);
       navigate("/all-quizzes");
@@ -94,7 +94,7 @@ const UpdateQuestion = () => {
 
           <div className="form-group">
             <label className="text-info">Choices:</label>
-            {choices.map((choice, index) => (
+            {choices?.map((choice, index) => (
               <input
                 key={index}
                 type="text"

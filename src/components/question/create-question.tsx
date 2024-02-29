@@ -43,12 +43,12 @@ const AddQuestion = () => {
   };
 
   const handleChoiceChange = (index: number, value: string) => {
-    setChoices(choices.map((choice, i) => (i === index ? value : choice)));
+    setChoices(choices?.map((choice, i) => (i === index ? value : choice)));
   };
 
   const handleCorrectAnswerChange = (index: number, value: string) => {
     setCorrectAnswers(
-      correctAnswers.map((answer, i) => (i === index ? value : answer))
+      correctAnswers?.map((answer, i) => (i === index ? value : answer))
     );
   };
 
@@ -67,7 +67,7 @@ const AddQuestion = () => {
         question,
         questionType,
         choices,
-        correctAnswers: correctAnswers.map((answer) => {
+        correctAnswers: correctAnswers?.map((answer) => {
           const choiceLetter = answer.charAt(0).toUpperCase();
           const choiceIndex = choiceLetter.charCodeAt(0) - 65;
           return choiceIndex >= 0 && choiceIndex < choices.length
@@ -120,7 +120,7 @@ const AddQuestion = () => {
                   >
                     <option value="">Select subject</option>
                     <option value={"New"}>Add New</option>
-                    {subjectOptions.map((option) => (
+                    {subjectOptions?.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -187,7 +187,7 @@ const AddQuestion = () => {
                   <label htmlFor="choices" className="form-label text-primary">
                     Choices
                   </label>
-                  {choices.map((choice, index) => (
+                  {choices?.map((choice, index) => (
                     <div key={index} className="input-group mb-3">
                       <input
                         type="text"
@@ -235,7 +235,7 @@ const AddQuestion = () => {
                     <label htmlFor="answer" className="form-label text-success">
                       Correct Answer(s)
                     </label>
-                    {correctAnswers.map((answer, index) => (
+                    {correctAnswers?.map((answer, index) => (
                       <div key={index} className="d-flex mb-2">
                         <input
                           type="text"

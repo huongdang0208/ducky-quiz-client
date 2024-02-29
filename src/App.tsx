@@ -1,15 +1,14 @@
-import React, { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./components/home"
-import QuizStepper from "./components/quiz/QuizStepper"
+import QuizStepper from "./components/quizz/quiz-stepper"
 import Quiz from "./components/quizz/quiz"
-import QuizResult from "./components/quiz/QuizResult"
+import QuizResult from "./components/quizz/quiz-result"
 import GetAllQuiz from "./components/quizz/all-quizzes"
 import AddQuestion from "./components/question/create-question"
 import UpdateQuestion from "./components/question/update-question"
 import Navbar from "./components/layout/nav-bar"
-import Admin from "./components/Admin"
+import Admin from "./components/admin"
 
 function App() {
 	return (

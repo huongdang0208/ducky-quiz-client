@@ -1,14 +1,25 @@
 import React from "react";
-import { Answer, Question } from "../../../utils/types/common.type";
+import { Question } from "../../../utils/types/common.type";
 
 type PropsType = {
   question: Question;
   isChecked: (questionId: string, choice: string) => boolean;
-  handleAnswerChange: (questionId: string, choice: string | string[]) => Answer[] | [];
-  handleCheckboxChange: (questionId: string, choice: string[] | string) => Answer[] | [];
+  handleAnswerChange: (
+    questionId: string,
+    choice: string | string[]
+  ) => unknown;
+  handleCheckboxChange: (
+    questionId: string,
+    choice: string[] | string
+  ) => unknown;
 };
 
-export const AnswerOptions: React.FC<PropsType> = ({ question, isChecked, handleAnswerChange, handleCheckboxChange }) => {
+export const AnswerOptions: React.FC<PropsType> = ({
+  question,
+  isChecked,
+  handleAnswerChange,
+  handleCheckboxChange,
+}) => {
   if (!question) {
     return (
       <div>

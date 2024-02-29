@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { fetchQuizForUser } from "../../../utils/services/questions.service";
 import { AnswerOptions } from "../question/answer-options";
-import { Answer } from "../../../utils/types/common.type";
+import { Answer, Question } from "../../../utils/types/common.type";
 
 const Quiz: React.FC = () => {
-  const [quizQuestions, setQuizQuestions] = useState([
-    { id: "", correctAnswers: "", question: "", questionType: "" },
-  ]);
+  const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [, setTotalScores] = useState(0);
@@ -71,60 +69,32 @@ const Quiz: React.FC = () => {
   };
 
   const handleCheckboxChange = (
-    questionId: string,
-    choice: string[] | string
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _questionId: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _choice: string | string[]
   ) => {
-    setSelectedAnswers((prevAnswers) => {
-      const existingAnswerIndex = prevAnswers.findIndex(
-        (answerObj) => answerObj.id === questionId
-      );
-      const selectedAnswer = Array.isArray(choice)
-        ? choice.map((c) => c.charAt(0))
-        : choice?.charAt(0);
-
-      if (existingAnswerIndex !== -1) {
-        const updatedAnswers = [...prevAnswers];
-        const existingAnswer = updatedAnswers[existingAnswerIndex].answer;
-        let newAnswer: string;
-        if (Array.isArray(existingAnswer)) {
-          newAnswer = existingAnswer.includes(selectedAnswer)
-            ? existingAnswer.filter((a) => a !== selectedAnswer)
-            : [...existingAnswer, selectedAnswer];
-        } else {
-          newAnswer = [existingAnswer, selectedAnswer];
-        }
-        updatedAnswers[existingAnswerIndex] = {
-          id: questionId,
-          answer: newAnswer,
-        };
-        console.log(updatedAnswers);
-        return updatedAnswers;
-      } else {
-        const newAnswer = { id: questionId, answer: [selectedAnswer] };
-        return [...prevAnswers, newAnswer];
-      }
-    });
   };
 
   const handleSubmit = () => {
-    let scores = 0;
+    const scores = 0;
     quizQuestions.forEach((question) => {
       const selectedAnswer = selectedAnswers.find(
         (answer) => answer.id === question.id
       );
       if (selectedAnswer) {
-        const selectedOptions = Array.isArray(selectedAnswer.answer)
-          ? selectedAnswer.answer.map((option) => option.charAt(0))
-          : [selectedAnswer.answer.charAt(0)];
-        const correctOptions = Array.isArray(question.correctAnswers)
-          ? question.correctAnswers.map((option) => option.charAt(0))
-          : [question.correctAnswers.charAt(0)];
-        const isCorrect =
-          selectedOptions.length === correctOptions.length &&
-          selectedOptions.every((option) => correctOptions.includes(option));
-        if (isCorrect) {
-          scores++;
-        }
+        // const selectedOptions = Array.isArray(selectedAnswer.answer)
+        //   ? selectedAnswer.answer.map((option) => option.charAt(0))
+        //   : [selectedAnswer.answer.charAt(0)];
+        // const correctOptions = Array.isArray(question.correctAnswer)
+        //   ? question.correctAnswer?.map((option) => option.charAt(0))
+        //   : [question.correctAnswer?.charAt(0)];
+        // const isCorrect =
+        //   selectedOptions.length === correctOptions.length &&
+        //   selectedOptions.every((option) => correctOptions.includes(option));
+        // if (isCorrect) {
+        //   scores++;
+        // }
       }
     });
     setTotalScores(scores);

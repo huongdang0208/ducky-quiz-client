@@ -9,5 +9,5 @@ export type Question = {
 
 export type Answer = {
   id: string;
-  answer: string;
+  answer: string | string[];
 };
