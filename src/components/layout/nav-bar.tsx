@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 class Header extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class Header extends React.Component {
           color="white"
           className="navbar navbar-expand-lg navbar-light bg-light"
         >
-          <a className="navbar-brand" href="#">
+          <NavLink className="navbar-brand" to={"/"}>
             <img
               src="https://uploads.codesandbox.io/uploads/user/394a073e-ac76-4500-88bf-59a13ae9a863/5U6A-mercury-logo.png"
               className="d-inline-block align-middle"
@@ -16,8 +17,8 @@ class Header extends React.Component {
               alt="mercury-logo"
               style={{ filter: "invert(100%)" }}
             />
-            mercury.
-          </a>
+            Online Quiz App
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,19 +33,14 @@ class Header extends React.Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/workspace">
-                  Workspace
-                </a>
+                <NavLink className="nav-link" to={"/admin"}>
+                  Admin
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/calendar">
-                  Calendar
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="display-board">
-                  Display Board
-                </a>
+                <NavLink className="nav-link" to={"/quiz-stepper"}>
+                  Take Quiz
+                </NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/settings">
